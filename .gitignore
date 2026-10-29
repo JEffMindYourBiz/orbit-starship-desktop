@@ -1,0 +1,13 @@
+*.exe
+*.dll
+*.pdb
+*.log
+*.blend*
+launchpad.txt
+mission-stats.txt
+error.txt
+*-test*.txt
+live-frame-check.txt
+self-test/
+models/
+effects/
