@@ -1,0 +1,29 @@
+name: Build Windows app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract runtime assets
+        shell: pwsh
+        run: Expand-Archive runtime-assets.zip -DestinationPath . -Force
+      - name: Build
+        shell: pwsh
+        run: ./Build.ps1
+      - name: Save build
+        uses: actions/upload-artifact@v4
+        with:
+          name: orbit-starship-windows
+          path: |
+            StarshipDesktop.exe
+            models/
+            effects/
